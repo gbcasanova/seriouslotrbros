@@ -85,6 +85,13 @@ class Player extends Phaser.Physics.Arcade.Sprite
         // Projectiles
         this.projectileCounter = 0
         this.projectileGroup = scene.physics.add.group()
+		
+		// Enemy projectiles.
+		scene.physics.add.overlap(this, scene.enemyProjectiles, function(_this, _projectile)
+        {
+            _this.hurt()
+			_projectile.destroy()
+        }, null, this)
     }
 
     hurt() {
@@ -164,7 +171,7 @@ class Player extends Phaser.Physics.Arcade.Sprite
         // Shoot projectiles.
         if(this.sKey.isDown && this.projectileCounter >= 15)    
         {
-            this.projectileGroup.add(new Projectile(this.scene, this.x, this.y, this.flipX, "playerProjectile"))
+            this.projectileGroup.add(new Projectile(this.scene, this.x, this.y, this.flipX, "playerProjectile", 160, 30))
             this.projectileCounter = 0;
         }
         else 

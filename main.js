@@ -29,10 +29,10 @@ var config = {
         default: 'arcade',
         arcade: 
         {
-            //debug: true,
-            //debugShowBody: true,
-            //debugShowStaticBody: true,
-            fps: 60
+            /*debug: true,
+            debugShowBody: true,
+            debugShowStaticBody: true,
+            fps: 60*/
         }
     },
 

@@ -1,6 +1,6 @@
 class Projectile extends Phaser.Physics.Arcade.Sprite
 {
-    constructor(scene, x, y, goingLeft, projectileSprite)
+    constructor(scene, x, y, goingLeft, projectileSprite, projectileVeloctity, projectileDuration)
     {
         super(scene, x, y, projectileSprite)
 
@@ -10,8 +10,8 @@ class Projectile extends Phaser.Physics.Arcade.Sprite
         
         this.goingLeft = goingLeft
         this.flipX = this.goingLeft
-        this.projectileVelocity = 160
-        this.projectileDuration = 30
+        this.projectileVelocity = projectileVeloctity
+        this.projectileDuration = projectileDuration
         this.setDepth(3)
     }
 

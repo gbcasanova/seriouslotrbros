@@ -14,8 +14,9 @@ class Enemy extends Phaser.Physics.Arcade.Sprite
         this.enemyVel    = 0
         this.enemyHealth = 1
         this.enemyDead   = false
+		this.type = type
 
-        this.setOrigin(0, 1)
+        this.setOrigin(0.5, 1)
 
         switch(type)
         {
@@ -45,7 +46,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite
                 }),
                 this.play("goblinWalking", true)
 
-                this.enemyVel    = 1
+                this.enemyVel    = 0.5
                 this.enemyHealth = 2
                 break
                 
@@ -67,6 +68,9 @@ class Enemy extends Phaser.Physics.Arcade.Sprite
                 scene.player.hurt()
             }
         }, null, this)
+		
+		// Projectiles
+        this.projectileCounter = 0
     }
 
     preUpdate(time, delta)
@@ -90,12 +94,12 @@ class Enemy extends Phaser.Physics.Arcade.Sprite
             if (this.x <= this.firstX)
             {
                 this.dir = "right"
-                this.flipX = true
+                this.flipX = false
             }
             else if (this.x >= this.lastX)
             {
                 this.dir = "left"
-                this.flipX = false
+                this.flipX = true
             }
 
             if (this.enemyHealth <= 0)
@@ -136,5 +140,22 @@ class Enemy extends Phaser.Physics.Arcade.Sprite
 
             }
         }
+		
+		// Attack projectiles.
+		switch(this.type)
+		{
+			case "goblin":
+				// Shoot projectiles.
+				if(this.projectileCounter >= 15)    
+				{
+					this.scene.enemyProjectiles.add(new Projectile(this.scene, this.x, this.y - this.height/2, this.flipX, "goblinAxe", 100, 30))
+					this.projectileCounter = 0;
+				}
+				else 
+				{
+					this.projectileCounter++
+				}
+				break
+		}
     }
 }

@@ -14,6 +14,7 @@ class Level extends Phaser.Scene
         // Load images.
         this.load.image("playerProjectile", "assets/sprites/playerProjectile.png")
         this.load.image("gotThrough", "assets/sprites/gotThrough.png")
+		this.load.image("goblinAxe", "assets/sprites/goblinAxe.png")
 
         // Load spritesheets.
         this.load.spritesheet("cutsceneLevel", "assets/cutscenes/cutsceneLevel.png", {frameWidth: 256, frameHeight: 240})
@@ -65,6 +66,9 @@ class Level extends Phaser.Scene
             this.sound.stopAll()
             this.sound.play("levelMusic")
         }, this);
+		
+		// Enemy projectiles group.
+		this.enemyProjectiles = this.physics.add.group()
 
         // Create player.
         this.player = new Player(this, 200, 100)
@@ -109,6 +113,7 @@ class Level extends Phaser.Scene
         this.lifebar.setDepth(3)
 
         this.levelFinished = false
+		
     }
 
     importObjects(layer)
