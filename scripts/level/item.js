@@ -59,7 +59,7 @@ class Item extends Phaser.Physics.Arcade.Sprite
                     }
                 )
 
-                /* Collisions w/ AI.
+                // Collisions w/ AI.
                 scene.physics.add.collider(
                     scene.aiPlayer,
                     this,
@@ -70,11 +70,11 @@ class Item extends Phaser.Physics.Arcade.Sprite
                             _aiPlayer.setVelocityY(-250)
                         }
                     }
-                )*/
+                )
                 break
 
             case "life":
-                this.setFrame(5)
+                this.setFrame(7)
                 scene.physics.add.overlap(this, scene.player, function()
                 {
                     if (scene.player.lives < 4)
@@ -87,7 +87,7 @@ class Item extends Phaser.Physics.Arcade.Sprite
                 break
 			
 			case "bridge":
-				this.setFrame(7)
+				this.setFrame(9)
 				
 				// Player
 				scene.physics.add.collider(
@@ -124,6 +124,28 @@ class Item extends Phaser.Physics.Arcade.Sprite
                     }
                 )
 				break
+			
+			case "yellowBlock":
+				this.setFrame(11)
+				
+				// Player
+				scene.physics.add.collider(
+                    scene.player,
+                    this,
+                    function (_player, _this)
+                    {
+                        if (_player.keys.yellow)
+						{
+							_this.destroy()
+						}
+                    }
+                )
+				
+				// AI Player.
+				scene.physics.add.collider(
+                    scene.aiPlayer,
+                    this
+                )
         }
     }
 }

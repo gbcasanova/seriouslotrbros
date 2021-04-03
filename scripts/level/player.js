@@ -92,6 +92,11 @@ class Player extends Phaser.Physics.Arcade.Sprite
             _this.hurt()
 			_projectile.destroy()
         }, null, this)
+		
+		// Keys;
+		this.keys = {
+			yellow: false
+		}
     }
 
     hurt() {
