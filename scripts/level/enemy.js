@@ -15,6 +15,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite
         this.enemyHealth = 1
         this.enemyDead   = false
 		this.type = type
+		this.attacks = false
 
         this.setOrigin(0.5, 1)
 
@@ -22,6 +23,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite
         {
             case "orc":
                 this.body.setSize(16, 42)
+				this.attacks = false
 
                 this.anims.create ({
                     key: "orcWalking",
@@ -37,6 +39,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite
 			
 			case "goblin":
                 this.body.setSize(16, 42)
+				this.attacks = true
 
                 this.anims.create ({
                     key: "goblinWalking",
@@ -94,12 +97,21 @@ class Enemy extends Phaser.Physics.Arcade.Sprite
             if (this.x <= this.firstX)
             {
                 this.dir = "right"
-                this.flipX = false
+				
+				if (!this.attacks)
+				{
+					this.flipX = false
+				}
+				else
+				{
+					this.flipX = true
+				}
             }
             else if (this.x >= this.lastX)
             {
                 this.dir = "left"
-                this.flipX = true
+				
+				this.flipX = true
             }
 
             if (this.enemyHealth <= 0)
