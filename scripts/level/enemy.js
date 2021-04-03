@@ -2,7 +2,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite
 {
     constructor(scene, x, y, type, firstX, lastX)
     {
-        super(scene, x, y)
+        super(scene, x, y, "enemies")
 
         // Add to updatelist.
         scene.add.existing(this)
@@ -20,16 +20,30 @@ class Enemy extends Phaser.Physics.Arcade.Sprite
         switch(type)
         {
             case "orc":
-                this.setTexture("orc")
                 this.body.setSize(16, 42)
 
                 this.anims.create ({
                     key: "orcWalking",
-                    frames: this.anims.generateFrameNumbers("orc", {start: 0, end: 1}),
+                    frames: this.anims.generateFrameNumbers("enemies", {start: 0, end: 1}),
                     frameRate: 5,
                     repeat: -1
                 }),
                 this.play("orcWalking", true)
+
+                this.enemyVel    = 1
+                this.enemyHealth = 2
+                break
+			
+			case "goblin":
+                this.body.setSize(16, 42)
+
+                this.anims.create ({
+                    key: "goblinWalking",
+                    frames: this.anims.generateFrameNumbers("enemies", {start: 2, end: 3}),
+                    frameRate: 5,
+                    repeat: -1
+                }),
+                this.play("goblinWalking", true)
 
                 this.enemyVel    = 1
                 this.enemyHealth = 2

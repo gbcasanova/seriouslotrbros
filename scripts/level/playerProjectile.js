@@ -1,8 +1,8 @@
-class PlayerProjectile extends Phaser.Physics.Arcade.Sprite
+class Projectile extends Phaser.Physics.Arcade.Sprite
 {
-    constructor(scene, x, y, goingLeft)
+    constructor(scene, x, y, goingLeft, projectileSprite)
     {
-        super(scene, x, y, "playerProjectile")
+        super(scene, x, y, projectileSprite)
 
         // Add to updatelist.
         scene.add.existing(this)

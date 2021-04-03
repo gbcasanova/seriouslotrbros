@@ -164,7 +164,7 @@ class Player extends Phaser.Physics.Arcade.Sprite
         // Shoot projectiles.
         if(this.sKey.isDown && this.projectileCounter >= 15)    
         {
-            this.projectileGroup.add(new PlayerProjectile(this.scene, this.x, this.y, this.flipX))
+            this.projectileGroup.add(new Projectile(this.scene, this.x, this.y, this.flipX, "playerProjectile"))
             this.projectileCounter = 0;
         }
         else 

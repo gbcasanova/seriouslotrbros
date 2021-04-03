@@ -98,10 +98,10 @@ class Item extends Phaser.Physics.Arcade.Sprite
                         if (_player.body.touching.down && _this.body.touching.up)
                         {
                             _this.bridgeTimer += 1
-							console.log(_this.bridgeTimer)
 							if (_this.bridgeTimer >= 7)
 							{
 								_this.setVelocityY(60)
+								_player.canJump
 							}
                         }
                     }

@@ -20,7 +20,7 @@ class Level extends Phaser.Scene
         this.load.spritesheet("frodo", "assets/sprites/frodo.png", {frameWidth: 33, frameHeight: 33})
         this.load.spritesheet("sam", "assets/sprites/sam.png", {frameWidth: 33, frameHeight: 33})
         this.load.spritesheet("lifebar", "assets/sprites/lifebar.png", {frameWidth: 8, frameHeight: 62})
-        this.load.spritesheet("orc", "assets/sprites/orc.png", {frameWidth: 16, frameHeight: 42})
+        this.load.spritesheet("enemies", "assets/sprites/enemies.png", {frameWidth: 16, frameHeight: 42})
 
         // Load map.
         this.load.image("tileset", "assets/sprites/tileset.png")
@@ -136,6 +136,7 @@ class Level extends Phaser.Scene
                     break
 
                 case "orc":
+				case "goblin":
                     new Enemy(
                         this, object.x, object.y, object.type, 
                         object.properties[0].value, object.properties[1].value
