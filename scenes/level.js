@@ -133,6 +133,9 @@ class Level extends Phaser.Scene
                 case "spring":
                 case "life":
 				case "bridge":
+				case "redKey":
+				case "yellowKey":
+				case "redBlock":
 				case "yellowBlock":
                     new Item(this, object.x, object.y, object.type, object.flippedVertical)
                     break

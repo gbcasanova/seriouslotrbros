@@ -95,6 +95,7 @@ class Player extends Phaser.Physics.Arcade.Sprite
 		
 		// Keys;
 		this.keys = {
+			red: false,
 			yellow: false
 		}
     }

@@ -125,6 +125,48 @@ class Item extends Phaser.Physics.Arcade.Sprite
                 )
 				break
 			
+			case "redKey":
+				this.setFrame(4)
+				
+				// Player
+				scene.physics.add.overlap(this, scene.player, function()
+				{
+					scene.player.keys.red = true
+					this.destroy()
+				}, null, this)
+				break
+			
+			case "yellowKey":
+				this.setFrame(5)
+				
+				// Player
+				scene.physics.add.overlap(this, scene.player, function()
+				{
+					scene.player.keys.yellow = true
+					this.destroy()
+				}, null, this)
+				break
+				
+			case "redBlock":
+				this.setFrame(10)
+				
+				// Player
+				scene.physics.add.collider(
+                    scene.player,
+                    this,
+                    function (_player, _this)
+                    {
+                        if (_player.keys.red)
+						{
+							_this.destroy()
+						}
+                    }
+                )
+				
+				// AI Player.
+				scene.physics.add.collider(scene.aiPlayer, this)
+				break
+			
 			case "yellowBlock":
 				this.setFrame(11)
 				
@@ -142,10 +184,8 @@ class Item extends Phaser.Physics.Arcade.Sprite
                 )
 				
 				// AI Player.
-				scene.physics.add.collider(
-                    scene.aiPlayer,
-                    this
-                )
+				scene.physics.add.collider(scene.aiPlayer, this)
+				break
         }
     }
 }
