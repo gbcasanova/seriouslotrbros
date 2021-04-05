@@ -7,5 +7,7 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
 		// Add to updatelist.
         scene.add.existing(this)
         scene.physics.add.existing(this)
+		
+		this.setOrigin(0.5, 1)
 	}
 }

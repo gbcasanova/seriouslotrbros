@@ -67,6 +67,18 @@
                  "width":16,
                  "x":16,
                  "y":144
+                }, 
+                {
+                 "gid":31,
+                 "height":16,
+                 "id":2,
+                 "name":"",
+                 "rotation":0,
+                 "type":"blackrider",
+                 "visible":true,
+                 "width":16,
+                 "x":288,
+                 "y":176
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -75,7 +87,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":2,
+ "nextobjectid":3,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -172,6 +184,10 @@
                          "value":0
                         }],
                  "type":"goblin"
+                }, 
+                {
+                 "id":30,
+                 "type":"blackrider"
                 }],
          "tilewidth":16
         }, 
