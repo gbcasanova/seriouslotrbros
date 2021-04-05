@@ -57,9 +57,18 @@ var levels = [
             "assets/backgrounds/hobbitonMountains2.png"
         ],
         music: "assets/music/hobbiton-1.mp3"
+    },
+	{
+        dir: "assets/tilemaps/hobbiton-3.json",
+        backgrounds: [
+            "assets/backgrounds/hobbitonSkies.png", 
+            "assets/backgrounds/hobbitonClouds.png", 
+            "assets/backgrounds/hobbitonMountains2.png"
+        ],
+        music: "assets/music/hobbiton-1.mp3"
     }
 ]
 
-var currentLevel = 1
+var currentLevel = 2
 
 var game = new Phaser.Game(config)

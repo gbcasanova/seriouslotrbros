@@ -7,7 +7,7 @@ class Level extends Phaser.Scene
 
     preload()
     {
-        // Clean cache.
+        // Clear cache.
         console.log(this.cache)
         this.cache.tilemap.remove("tilemap")
 
@@ -22,6 +22,7 @@ class Level extends Phaser.Scene
         this.load.spritesheet("sam", "assets/sprites/sam.png", {frameWidth: 33, frameHeight: 33})
         this.load.spritesheet("lifebar", "assets/sprites/lifebar.png", {frameWidth: 8, frameHeight: 62})
         this.load.spritesheet("enemies", "assets/sprites/enemies.png", {frameWidth: 16, frameHeight: 42})
+		this.load.spritesheet("blackrider", "assets/sprites/blackrider.png", {frameWidth: 90, frameHeight: 98})
 
         // Load map.
         this.load.image("tileset", "assets/sprites/tileset.png")
