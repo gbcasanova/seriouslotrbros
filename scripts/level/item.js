@@ -72,9 +72,24 @@ class Item extends Phaser.Physics.Arcade.Sprite
                     }
                 )
                 break
+				
+			case "lockScreen":
+				this.setFrame(6)
+				this.visible = false
+				
+				// Player
+                scene.physics.add.overlap(this, scene.player, function()
+                {
+					this.scene.cameras.main.startFollow(this, true, 0, 0)
+					this.scene.cameraLock = true
+					this.destroy()
+                }, null, this)
+                break
 
             case "life":
                 this.setFrame(7)
+				
+				// Player
                 scene.physics.add.overlap(this, scene.player, function()
                 {
                     if (scene.player.lives < 4)

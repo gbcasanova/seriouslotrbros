@@ -74,6 +74,23 @@ class AiPlayer extends Phaser.Physics.Arcade.Sprite
         })
         this.fading = false
         this.lives = 4
+		
+		this.fuckedSprite = scene.add.image(this.x, this.y, "aiFucked")
+		this.fuckedSprite.visible = false
+		this.lockStarted = false
+		this.fuckedTimer = scene.time.addEvent({
+			delay: 3500,
+			callback: function(){
+				this.fuckedSprite.visible = false
+				},
+			args: [],
+			callbackScope: this,
+			loop: false,
+			repeat: 0,
+			startAt: 0,
+			timeScale: 1,
+			paused: true
+		});
     }
 
     hurt() {
@@ -87,6 +104,19 @@ class AiPlayer extends Phaser.Physics.Arcade.Sprite
     preUpdate(time, delta)
     {
         super.preUpdate(time, delta)
+		
+		this.fuckedSprite.x = this.x + 35
+		this.fuckedSprite.y = this.y - 30
+		
+		if (this.scene.cameraLock)
+		{
+			if (!this.lockStarted)
+			{
+				this.fuckedSprite.visible = true
+				this.fuckedTimer.paused = false
+				this.lockStarted = true
+			}
+		}
 
         if (this.scene.player.x - 30 > this.x)
         {

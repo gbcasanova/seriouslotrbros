@@ -15,6 +15,7 @@ class Level extends Phaser.Scene
         this.load.image("playerProjectile", "assets/sprites/playerProjectile.png")
         this.load.image("gotThrough", "assets/sprites/gotThrough.png")
 		this.load.image("goblinAxe", "assets/sprites/goblinAxe.png")
+		this.load.image("aiFucked", "assets/sprites/aiFucked.png")
 
         // Load spritesheets.
         this.load.spritesheet("cutsceneLevel", "assets/cutscenes/cutsceneLevel.png", {frameWidth: 256, frameHeight: 240})
@@ -46,6 +47,7 @@ class Level extends Phaser.Scene
         this.load.audio("fanfare", "assets/music/fanfare.mp3")
         this.load.audio("actClear", "assets/music/actClear.mp3")
         this.load.audio("levelMusic", levels[currentLevel].music)
+		this.load.audio("bossMusic", "assets/music/bossMusic.mp3")
     }
 
     create()
@@ -112,9 +114,9 @@ class Level extends Phaser.Scene
         this.lifebar = this.add.sprite(10, config.height/2, "lifebar", this.player.lives)
         this.lifebar.setScrollFactor(0)
         this.lifebar.setDepth(3)
-
-        this.levelFinished = false
 		
+		this.cameraLock = false
+        this.levelFinished = false
     }
 
     importObjects(layer)
@@ -132,6 +134,7 @@ class Level extends Phaser.Scene
                 case "coin":
                 case "spike":
                 case "spring":
+				case "lockScreen":
                 case "life":
 				case "bridge":
 				case "redKey":
@@ -154,9 +157,10 @@ class Level extends Phaser.Scene
                     break
 					
 				case "blackrider":
-					new BlackRider(
+					let blackRider = new BlackRider(
 						this, object.x, object.y
 					)
+					this.physics.add.collider(blackRider, this.layers[1]);
 					break
             }
         })
