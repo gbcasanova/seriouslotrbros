@@ -19,6 +19,21 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
 		this.play("riderWalking", true)
 		
 		this.started = false
+		this.moving = false
+		
+		this.fuckedTimer = scene.time.addEvent({
+			delay: 3500,
+			callback: function(){
+				this.moving = true
+				},
+			args: [],
+			callbackScope: this,
+			loop: false,
+			repeat: 0,
+			startAt: 0,
+			timeScale: 1,
+			paused: true
+		});
 	}
 	
 	preUpdate(time, delta)
@@ -32,7 +47,13 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
 				this.scene.sound.play("bossMusic")
 				this.body.setGravityY(300)
 				this.started = true
+				this.fuckedTimer.paused = false
 			}
+		}
+		
+		if (this.moving)
+		{
+			console.log("AAAA")
 		}
 	}
 }
