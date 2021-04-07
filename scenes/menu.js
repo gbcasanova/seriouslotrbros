@@ -16,19 +16,27 @@ class Menu extends Phaser.Scene
 
         this.load.audio("intro", "assets/music/intro.mp3")
         this.load.audio("menu", "assets/music/khazadDum.mp3")
+		this.load.video("video", "assets/aaa.mp4")
 
     }
 
     create()
     {
-        this.cutscenePlaying = false
+		let video = this.add.video(0, 0, 'video').setOrigin(0, 0)
+		video.displayWidth = config.width
+		video.displayHeight = config.height
+		video.play()
+		
+        /*this.cutscenePlaying = false
         this.menuPlaying = false
 
-        this.createCutscene()
+        this.createCutscene()*/
     }
 
     createCutscene()
     {
+		
+		
         this.cutscenePlaying = true
         this.cameras.main.fadeIn(2000)
 
