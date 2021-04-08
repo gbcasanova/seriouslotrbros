@@ -1505,6 +1505,17 @@
                  "height":16,
                  "id":140,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"firstX",
+                         "type":"int",
+                         "value":2410
+                        }, 
+                        {
+                         "name":"lastX",
+                         "type":"int",
+                         "value":2578
+                        }],
                  "rotation":0,
                  "type":"blackrider",
                  "visible":true,
@@ -1535,6 +1546,18 @@
                  "width":16,
                  "x":2608,
                  "y":160
+                }, 
+                {
+                 "gid":1,
+                 "height":16,
+                 "id":145,
+                 "name":"",
+                 "rotation":0,
+                 "type":"playerStart",
+                 "visible":true,
+                 "width":16,
+                 "x":2320,
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1543,7 +1566,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":145,
+ "nextobjectid":146,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -1647,6 +1670,17 @@
                 }, 
                 {
                  "id":30,
+                 "properties":[
+                        {
+                         "name":"firstX",
+                         "type":"int",
+                         "value":2400
+                        }, 
+                        {
+                         "name":"lastX",
+                         "type":"int",
+                         "value":2592
+                        }],
                  "type":"blackrider"
                 }],
          "tilewidth":16

@@ -158,7 +158,8 @@ class Level extends Phaser.Scene
 					
 				case "blackrider":
 					let blackRider = new BlackRider(
-						this, object.x, object.y
+						this, object.x, object.y,
+						object.properties[0].value, object.properties[1].value
 					)
 					this.physics.add.collider(blackRider, this.layers[1]);
 					break
