@@ -24,6 +24,7 @@ class Level extends Phaser.Scene
         this.load.spritesheet("lifebar", "assets/sprites/lifebar.png", {frameWidth: 8, frameHeight: 62})
         this.load.spritesheet("enemies", "assets/sprites/enemies.png", {frameWidth: 16, frameHeight: 42})
 		this.load.spritesheet("blackrider", "assets/sprites/blackrider.png", {frameWidth: 63, frameHeight: 68})
+		this.load.spritesheet("bossHealthBar", "assets/sprites/bossHealthBar.png", {frameWidth: 42, frameHeight: 9})
 
         // Load map.
         this.load.image("tileset", "assets/sprites/tileset.png")
@@ -94,7 +95,7 @@ class Level extends Phaser.Scene
 
         // Ai Player.
         this.hasAiPlayer = true
-        this.aiPlayer = new AiPlayer(this, this.player.x + 30, this.player.y, "sam")
+        this.aiPlayer = new AiPlayer(this, this.player.x - 5, this.player.y, "sam")
         this.physics.add.collider(this.aiPlayer, this.layers[1]);
 		
 		this.importObjects(this.layers[3]) // Import objects from map.

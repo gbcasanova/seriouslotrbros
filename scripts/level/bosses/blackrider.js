@@ -4,27 +4,42 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
 	{
 		super(scene, x, y, "blackrider")
 		
+		this.healthBar = scene.add.sprite(this.x, this.y, "bossHealthBar", 0)
+		
 		// Add to updatelist.
         scene.add.existing(this)
         scene.physics.add.existing(this)
+		
+		this.body.setSize(this.width - 30, this.height)
 		this.setOrigin(0.5, 1)
 		
 		// Animation
 		this.anims.create ({
-                key: "riderWalking",
-                frames: this.anims.generateFrameNumbers("blackrider", {start: 0, end: 3}),
-                frameRate: 7,
-                repeat: -1
-            }),
+            key: "riderWalkingNormal",
+            frames: this.anims.generateFrameNumbers("blackrider", {start: 0, end: 3}),
+            frameRate: 7,
+            repeat: -1
+        }),
 		
-		this.play("riderWalking", true)
+		this.anims.create ({
+            key: "riderWalkingPinch",
+            frames: this.anims.generateFrameNumbers("blackrider", {start: 0, end: 3}),
+            frameRate: 14,
+            repeat: -1
+        }),
 		
 		this.started = false
 		this.moving = false
 		this.velocity  = 1
+		this.pinchMode = false
 		this.firstX = firstX
         this.lastX  = lastX
 		this.flipX = false
+		this.dead = false
+		
+		this.maxHealth = 10
+		this.health = this.maxHealth
+		this.totalPinches = 5
 		
 		this.movingTimer = scene.time.addEvent({
 			delay: 4000,
@@ -39,11 +54,38 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
 			timeScale: 1,
 			paused: true
 		});
+		
+		// Destroy projectile and get hurt.
+        scene.physics.add.overlap(this, scene.player.projectileGroup, function(_this, _projectile)
+        {
+			if (this.moving)
+			{
+				if (!this.pinchMode)
+				{
+					_projectile.destroy()
+					this.health -= 1
+					this.scene.cameras.main.shake(50, 0.003)
+				}
+			}
+        }, null, this)
+		
+		// Hurt player.
+        scene.physics.add.overlap(this, scene.player, function()
+        {
+			if (!this.dead)
+			{
+				scene.player.hurt()
+			}
+        }, null, this)
 	}
 	
 	preUpdate(time, delta)
 	{
 		super.preUpdate(time, delta)
+		
+		this.healthBar.x = this.x
+		this.healthBar.y = this.y - this.height
+		this.healthBar.setFrame(this.totalPinches)
 		
 		//
 		if (this.scene.cameraLock)
@@ -59,17 +101,80 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
 		}
 		
 		if (this.moving)
-		{
+		{	
 			// Enemy walk.
-            if (!this.flipX)
-            {
-                this.x -= this.velocity
-            }
-            else if (this.flipX)
-            {
-                this.x+= this.velocity
-            }
+			if (!this.pinchMode)
+			{
+				this.play("riderWalkingNormal", true)
+				this.tint = 0xFFFFFF
+				
+				if (!this.flipX)
+				{
+					this.x -= this.velocity
+				}
+				else if (this.flipX)
+				{
+					this.x+= this.velocity
+				}
+			}
+			else
+			{
+				this.play("riderWalkingPinch", true)
+				this.tint = 0xFF0000
+				
+				if (!this.flipX)
+				{
+					this.x -= this.velocity * 1.7
+				}
+				else if (this.flipX)
+				{
+					this.x+= this.velocity * 1.7
+				}
+			}
+			
 		}
+		
+		if (this.started)
+		{
+			if (!this.pinchMode)
+			{
+				if (this.health <= 0)
+				{
+					this.totalPinches -= 1
+					this.health = this.maxHealth
+					this.pinchMode = true
+					
+					let timer = this.scene.time.delayedCall(10000, function(){
+						this.pinchMode = false
+					}, [], this);  // delay in ms
+				}
+			}
+		}
+		
+		if (!this.dead)
+		{
+			if (this.totalPinches <= 0)
+			{
+				this.pinchMode = false
+				this.moving = false
+				this.anims.stop()
+				this.dead = true
+				
+				// Make sprite transparent.
+				let transparentTween = this.scene.tweens.add({
+                    targets: this,
+                    alpha: {
+                        getStart: () => 1,
+                        getEnd: () => 0
+                    },
+                    ease: 'Bounce.easeOut',
+                    duration: 5000,
+                    repeat: 0,
+                    yoyo: false
+                })
+			}
+		}
+		
 		
 		// Change direction
         if (this.x <= this.firstX)
@@ -78,7 +183,6 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
         }
         else if (this.x >= this.lastX)
         {
-				
 			this.flipX = false
         }
 	}
