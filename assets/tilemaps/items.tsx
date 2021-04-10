@@ -7,6 +7,7 @@
  <tile id="3" type="spring"/>
  <tile id="4" type="redKey"/>
  <tile id="5" type="yellowKey"/>
+ <tile id="6" type="lockScreen"/>
  <tile id="7" type="life"/>
  <tile id="8" type="endSpot"/>
  <tile id="9" type="bridge"/>
@@ -22,6 +23,12 @@
   <properties>
    <property name="firstX" type="int" value="0"/>
    <property name="lastX" type="int" value="0"/>
+  </properties>
+ </tile>
+ <tile id="30" type="blackrider">
+  <properties>
+   <property name="firstX" type="int" value="2400"/>
+   <property name="lastX" type="int" value="2592"/>
   </properties>
  </tile>
 </tileset>
