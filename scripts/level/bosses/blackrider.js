@@ -37,7 +37,7 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
 		
 		this.maxHealth = 10
 		this.health = this.maxHealth
-		this.totalPinches = 1
+		this.totalPinches = 5
 		
 		this.movingTimer = scene.time.addEvent({
 			delay: 4000,
