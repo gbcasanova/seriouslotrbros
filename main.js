@@ -73,11 +73,11 @@ var levels = [
 			"assets/backgrounds/breeSkies.png",
 			"assets/backgrounds/breeBuildings0.png",
 			"assets/backgrounds/breeBuildings1.png"
-		]
+		],
 		music: "assets/music/hobbiton-1.mp3"
 	}
 ]
 
-var currentLevel = 3
+var currentLevel = 2
 
 var game = new Phaser.Game(config)
