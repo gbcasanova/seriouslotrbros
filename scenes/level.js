@@ -43,6 +43,7 @@ class Level extends Phaser.Scene
         this.load.audio("life", "assets/sounds/life.wav")
         this.load.audio("spring","assets/sounds/spring.mp3")
         this.load.audio("enemy", "assets/sounds/enemy.wav")
+		this.load.audio("sword", "assets/sounds/sword.wav")
 
         // Load music.
         this.load.audio("fanfare", "assets/music/fanfare.mp3")
