@@ -101,6 +101,30 @@ class Item extends Phaser.Physics.Arcade.Sprite
                 }, null, this)
                 break
 			
+			case "endSpot":
+				this.setFrame(8)
+				this.visible = false
+				
+				// Player
+                scene.physics.add.overlap(this, scene.player, function()
+                {
+					scene.levelFinished = true
+
+					scene.player.canMove = false
+					scene.player.setVelocityX(0)
+					scene.player.play("idle")
+                
+					scene.sound.stopAll()
+					scene.sound.play("actClear")
+
+					scene.finishLevel()
+					
+					this.destroy()
+                }, null, this)
+                break
+				
+				break
+			
 			case "bridge":
 				this.setFrame(9)
 				

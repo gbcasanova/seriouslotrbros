@@ -103,7 +103,7 @@ class Level extends Phaser.Scene
 		// Destroy AI player if disabled in map.
         if (!map.properties[0].value)
         {
-            //this.aiPlayer.destroy()
+            this.aiPlayer.destroy()
         }
 
         // Import parallax backgrounds.
@@ -137,16 +137,13 @@ class Level extends Phaser.Scene
                 case "spring":
 				case "lockScreen":
                 case "life":
+				case "endSpot":
 				case "bridge":
 				case "redKey":
 				case "yellowKey":
 				case "redBlock":
 				case "yellowBlock":
                     new Item(this, object.x, object.y, object.type, object.flippedVertical)
-                    break
-
-                case "endSpot":
-                    this.endSpot = object.x
                     break
 
                 case "orc":
@@ -172,24 +169,6 @@ class Level extends Phaser.Scene
     {
         // Update lifebar.
         this.lifebar.setFrame(this.player.lives)
-
-        // Check if player has finished the level
-        if (!this.levelFinished)
-        {
-            if (this.player.x >= this.endSpot)
-            {
-                this.levelFinished = true
-
-                this.player.canMove = false
-                this.player.setVelocityX(0)
-                this.player.play("idle")
-                
-                this.sound.stopAll()
-                this.sound.play("actClear")
-
-                this.finishLevel()
-            }
-        }
     }
 
     finishLevel()

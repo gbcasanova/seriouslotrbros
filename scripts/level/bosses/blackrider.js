@@ -4,8 +4,6 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
 	{
 		super(scene, x, y, "blackrider")
 		
-		this.healthBar = scene.add.sprite(this.x, this.y, "bossHealthBar", 0)
-		
 		// Add to updatelist.
         scene.add.existing(this)
         scene.physics.add.existing(this)
@@ -39,7 +37,7 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
 		
 		this.maxHealth = 10
 		this.health = this.maxHealth
-		this.totalPinches = 5
+		this.totalPinches = 1
 		
 		this.movingTimer = scene.time.addEvent({
 			delay: 4000,
@@ -77,17 +75,20 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
 				scene.player.hurt()
 			}
         }, null, this)
+		
+		this.healthBar = scene.add.sprite(this.x, this.y, "bossHealthBar", 0) // Healthbar sprite.
 	}
 	
 	preUpdate(time, delta)
 	{
 		super.preUpdate(time, delta)
 		
+		// Update healthbar.
 		this.healthBar.x = this.x
 		this.healthBar.y = this.y - this.height
 		this.healthBar.setFrame(this.totalPinches)
 		
-		//
+		// Start boss.
 		if (this.scene.cameraLock)
 		{
 			if (!this.started)
@@ -100,6 +101,7 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
 			}
 		}
 		
+		// Animate and move boss.
 		if (this.moving)
 		{	
 			// Enemy walk.
@@ -134,6 +136,17 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
 			
 		}
 		
+		// Change direction
+        if (this.x <= this.firstX)
+        {
+			this.flipX = true
+        }
+        else if (this.x >= this.lastX)
+        {
+			this.flipX = false
+        }
+		
+		// Start pinch mode.
 		if (this.started)
 		{
 			if (!this.pinchMode)
@@ -151,6 +164,7 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
 			}
 		}
 		
+		// Kill boss animation.
 		if (!this.dead)
 		{
 			if (this.totalPinches <= 0)
@@ -172,18 +186,20 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
                     repeat: 0,
                     yoyo: false
                 })
+				
+				transparentTween.on("complete", function(tween, targets) {
+					
+					new Item(this.scene, this.x, this.y, "redKey", false)
+					this.scene.cameraLock = false
+					this.scene.cameras.main.startFollow(this.scene.player, true, 0.2, 1)
+					this.scene.sound.stopAll()
+					this.scene.sound.play("levelMusic")
+					
+					
+					this.healthBar.destroy()
+                    this.destroy()
+                }, this)
 			}
 		}
-		
-		
-		// Change direction
-        if (this.x <= this.firstX)
-        {
-			this.flipX = true
-        }
-        else if (this.x >= this.lastX)
-        {
-			this.flipX = false
-        }
 	}
 }
