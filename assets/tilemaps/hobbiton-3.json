@@ -1164,18 +1164,6 @@
                  "y":128
                 }, 
                 {
-                 "gid":3,
-                 "height":16,
-                 "id":197,
-                 "name":"",
-                 "rotation":0,
-                 "type":"spike",
-                 "visible":true,
-                 "width":16,
-                 "x":2352,
-                 "y":48
-                }, 
-                {
                  "gid":2,
                  "height":16,
                  "id":198,
