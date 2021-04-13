@@ -1,6 +1,6 @@
 class Item extends Phaser.Physics.Arcade.Sprite
 {
-    constructor(scene, x, y, type, flippedVertical)
+    constructor(scene, x, y, type, flippedVertical, flippedHorizontal)
     {
         super(scene, x, y, "items", 0)
 
@@ -11,6 +11,7 @@ class Item extends Phaser.Physics.Arcade.Sprite
         this.setOrigin(0, 1)
         this.setImmovable(true)
         this.setDepth(2)
+		this.flipX = flippedHorizontal
 		this.flipY = flippedVertical
 		
 		this.bridgeTimer = 0
@@ -224,6 +225,23 @@ class Item extends Phaser.Physics.Arcade.Sprite
 				
 				// AI Player.
 				scene.physics.add.collider(scene.aiPlayer, this)
+				break
+				
+			case "shooter":
+				this.setFrame(17)
+				
+				// Player
+				scene.physics.add.collider(scene.player, this)
+				
+				var timer = scene.time.addEvent({
+					delay: 600,
+					callback: function(){
+						this.scene.enemyProjectiles.add(new Projectile(this.scene, this.x, this.y - this.height/2, this.flipX, "goblinAxe", 200, 100))
+					},
+					callbackScope: this,
+					repeat: -1
+				});
+				
 				break
         }
     }

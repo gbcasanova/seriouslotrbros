@@ -54,6 +54,7 @@ class Player extends Phaser.Physics.Arcade.Sprite
 
         this.body.setGravityY(300)
         this.body.setSize(this.width - 20, this.height)
+		this.setMaxVelocity(500, 500)
         scene.cameras.main.startFollow(this, true, 0.2, 1)
 
         this.aKey    = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A)

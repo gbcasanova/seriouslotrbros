@@ -8,7 +8,7 @@ class Level extends Phaser.Scene
     preload()
     {
         // Clear cache.
-        console.log(this.cache)
+        //console.log(this.cache)
         this.cache.tilemap.remove("tilemap")
 		this.cache.audio.remove("levelMusic")
 		this.textures.remove("background0")
@@ -148,7 +148,8 @@ class Level extends Phaser.Scene
 				case "yellowKey":
 				case "redBlock":
 				case "yellowBlock":
-                    new Item(this, object.x, object.y, object.type, object.flippedVertical)
+				case "shooter":
+                    new Item(this, object.x, object.y, object.type, object.flippedVertical, object.flippedHorizontal)
                     break
 
                 case "orc":
