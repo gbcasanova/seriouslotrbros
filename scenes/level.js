@@ -10,6 +10,10 @@ class Level extends Phaser.Scene
         // Clear cache.
         console.log(this.cache)
         this.cache.tilemap.remove("tilemap")
+		this.cache.audio.remove("levelMusic")
+		this.textures.remove("background0")
+		this.textures.remove("background1")
+		this.textures.remove("background2")
 
         // Load images.
         this.load.image("playerProjectile", "assets/sprites/playerProjectile.png")
