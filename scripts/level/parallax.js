@@ -7,7 +7,7 @@ function createParallax (scene, totalWidth, texture, scrollFactor) {
     {
         let m = scene.add.image(x, scene.scale.height, texture)
             .setOrigin(0, 1)
-            .setScrollFactor(scrollFactor)
+            .setScrollFactor(scrollFactor, 0)
 
         x += m.width
         m.depth = -1
