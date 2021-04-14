@@ -13,6 +13,7 @@
  <tile id="9" type="bridge"/>
  <tile id="10" type="redBlock"/>
  <tile id="11" type="yellowBlock"/>
+ <tile id="17" type="shooter"/>
  <tile id="18" type="orc">
   <properties>
    <property name="firstX" type="int" value="0"/>

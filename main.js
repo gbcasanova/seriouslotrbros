@@ -78,6 +78,6 @@ var levels = [
 	}
 ]
 
-var currentLevel = 3
+var currentLevel = 1
 
 var game = new Phaser.Game(config)
