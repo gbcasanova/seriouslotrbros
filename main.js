@@ -29,10 +29,10 @@ var config = {
         default: 'arcade',
         arcade: 
         {
-            /*debug: true,
+            debug: true,
             debugShowBody: true,
             debugShowStaticBody: true,
-            fps: 60*/
+            fps: 60
         }
     },
 
@@ -75,9 +75,18 @@ var levels = [
 			"assets/backgrounds/breeBuildings1.png"
 		],
 		music: "assets/music/bree.mp3"
+	},
+	{
+		dir: "assets/tilemaps/bree-1.json",
+		backgrounds: [
+			"assets/backgrounds/breeSkies.png",
+			"assets/backgrounds/breeBuildings0.png",
+			"assets/backgrounds/breeBuildings1.png"
+		],
+		music: "assets/music/bree.mp3"
 	}
 ]
 
-var currentLevel = 1
+var currentLevel = 4
 
 var game = new Phaser.Game(config)

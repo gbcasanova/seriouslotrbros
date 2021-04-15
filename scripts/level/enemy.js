@@ -52,7 +52,23 @@ class Enemy extends Phaser.Physics.Arcade.Sprite
                 this.enemyVel    = 0.5
                 this.enemyHealth = 2
                 break
-                
+			
+			case "bomb":
+				this.body.setSize(16, 16)
+				this.y += 13
+				this.attacks = true
+
+                this.anims.create ({
+                    key: "bombWalking",
+                    frames: this.anims.generateFrameNumbers("enemies", {start: 4, end: 5}),
+                    frameRate: 10,
+                    repeat: -1
+                }),
+                this.play("bombWalking", true)
+
+                this.enemyVel    = 3
+                this.enemyHealth = 4
+                break
         }
 
         // Destroy projectile and get hurt.

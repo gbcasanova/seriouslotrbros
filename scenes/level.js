@@ -151,9 +151,10 @@ class Level extends Phaser.Scene
 				case "shooter":
                     new Item(this, object.x, object.y, object.type, object.flippedVertical, object.flippedHorizontal)
                     break
-
+					
                 case "orc":
 				case "goblin":
+				case "bomb":
                     new Enemy(
                         this, object.x, object.y, object.type, 
                         object.properties[0].value, object.properties[1].value
