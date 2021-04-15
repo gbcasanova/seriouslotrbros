@@ -56,7 +56,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite
 			case "bomb":
 				this.body.setSize(16, 16)
 				this.y += 13
-				this.attacks = true
+				this.attacks = false
 
                 this.anims.create ({
                     key: "bombWalking",
