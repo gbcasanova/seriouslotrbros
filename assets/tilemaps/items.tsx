@@ -26,6 +26,12 @@
    <property name="lastX" type="int" value="0"/>
   </properties>
  </tile>
+ <tile id="20" type="bomb">
+  <properties>
+   <property name="firstX" value=""/>
+   <property name="lastX" value=""/>
+  </properties>
+ </tile>
  <tile id="30" type="blackrider">
   <properties>
    <property name="firstX" type="int" value="2400"/>

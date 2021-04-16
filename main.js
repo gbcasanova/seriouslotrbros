@@ -84,9 +84,18 @@ var levels = [
 			"assets/backgrounds/breeBuildings1.png"
 		],
 		music: "assets/music/bree.mp3"
+	},
+	{
+		dir: "assets/tilemaps/bree-2.json",
+		backgrounds: [
+			"assets/backgrounds/breeSkies.png",
+			"assets/backgrounds/breeBuildings0.png",
+			"assets/backgrounds/breeBuildings1.png"
+		],
+		music: "assets/music/bree.mp3"
 	}
 ]
 
-var currentLevel = 4
+var currentLevel = 0
 
 var game = new Phaser.Game(config)
