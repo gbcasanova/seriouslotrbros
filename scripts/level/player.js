@@ -45,15 +45,37 @@ class Player extends Phaser.Physics.Arcade.Sprite
                 key: "walkingAttacking",
                 frames: this.anims.generateFrameNumbers("frodo", {start: 8, end: 10}),
                 frameRate: 7,
-            })
+            }),
+			
+			this.anims.create({
+				key: "legolasHorseIdle",
+				frames: [{key: "legolasHorse", frame: 1}],
+				frameRate: 10,
+			}),
+			
+			this.anims.create({
+				key: "legolasHorseWalking",
+				frames: this.anims.generateFrameNumbers("legolasHorse", {start: 0, end: 3}),
+				frameRate: 10,
+			})
         ]
-
-        this.play('idle')
         this.depth = 1
         this.canMove = false
 
-        this.body.setGravityY(300)
-        this.body.setSize(this.width - 20, this.height)
+        // Check if it isn't horse level.
+		if (currentLevel != 6)
+		{
+			this.play('idle')
+			this.body.setSize(this.width - 20, this.height)
+		}
+		else
+		{
+			this.play('legolasHorseWalking')
+			this.body.setSize(this.width - 20, this.height)
+			this.setOrigin(0.5, 1)
+		}
+		
+		this.body.setGravityY(300)
 		this.setMaxVelocity(500, 500)
         scene.cameras.main.startFollow(this, true, 0.2, 1)
 
@@ -118,73 +140,109 @@ class Player extends Phaser.Physics.Arcade.Sprite
 
         if (this.canMove)
         {
-            if (this.cursors.left.isDown)
-            {
-                this.setVelocityX(-130)
+			if (currentLevel != 6)
+			{
+				// ### NORMAL WALKING. ###
+				if (this.cursors.left.isDown)
+				{
+					this.setVelocityX(-130)
 
-                if (this.sKey.isDown)
-                {
-                    this.play("walkingAttacking", true)
-                }
-                else
-                {
-                    this.play('walking', true)
-                }
-                
-                this.flipX = true
-            }
-            else if (this.cursors.right.isDown)
-            {
-                this.setVelocityX(130)
-                if (this.sKey.isDown)
-                {
-                    this.play("walkingAttacking", true)
-                }
-                else
-                {
-                    this.play('walking', true)
-                }
-                this.flipX = false
-            }
-            else
-            {
-                this.setVelocityX(0)
+					if (this.sKey.isDown)
+					{
+						this.play("walkingAttacking", true)
+					}
+					else
+					{
+						this.play('walking', true)
+					}
+					
+					this.flipX = true
+				}
+				else if (this.cursors.right.isDown)
+				{
+					this.setVelocityX(130)
+					if (this.sKey.isDown)
+					{
+						this.play("walkingAttacking", true)
+					}
+					else
+					{
+						this.play('walking', true)
+					}
+					this.flipX = false
+				}
+				else
+				{
+					this.setVelocityX(0)
 
-                if (this.sKey.isDown)
-                {
-                    this.play("attacking", true)
-                }
-                else
-                {
-                    this.play('idle', true)
-                }
-            }
-            
-
-            if (this.aKey.isDown && this.body.onFloor())
-            {
-                this.setVelocityY(-170)
-                this.scene.sound.play("jump")
-            }
-        }
-
-        // Jumping animation.
-        if (this.body.velocity.y < 0) {
-            this.play("jumping", true)
-        } else if (this.body.velocity.y > 0) {
-            this.play("falling", true)
-        }
-
-        // Shoot projectiles.
-        if(this.sKey.isDown && this.projectileCounter >= 15)    
-        {
-            this.projectileGroup.add(new Projectile(this.scene, this.x, this.y, this.flipX, "playerProjectile", 160, 30))
-			this.scene.sound.play("sword")
-            this.projectileCounter = 0;
-        }
-        else 
-        {
-            this.projectileCounter++
+					if (this.sKey.isDown)
+					{
+						this.play("attacking", true)
+					}
+					else
+					{
+						this.play('idle', true)
+					}
+				}
+				
+				if (this.aKey.isDown && this.body.onFloor())
+				{
+					this.setVelocityY(-170)
+					this.scene.sound.play("jump")
+				}
+				
+				// Jumping animation.
+				if (this.body.velocity.y < 0) {
+					this.play("jumping", true)
+				} else if (this.body.velocity.y > 0) {
+					this.play("falling", true)
+				}
+				
+				// Shoot projectiles.
+				if(this.sKey.isDown && this.projectileCounter >= 15)    
+				{
+					this.projectileGroup.add(new Projectile(this.scene, this.x, this.y, this.flipX, "playerProjectile", 160, 30))
+					this.scene.sound.play("sword")
+					this.projectileCounter = 0;
+				}
+				else 
+				{
+					this.projectileCounter++
+				}
+			}
+			else
+			{
+				// ### HORSE WALKING. ###
+				if (this.cursors.left.isDown)
+				{
+					if (this.body.velocity.y < 0) 
+					{
+						this.setVelocityX(-190)
+						this.play("legolasHorseWalking", true)
+					}
+					else
+					{
+						this.setVelocityX(0)
+						this.play("legolasHorseIdle", true)
+					}
+					//console.log("aaaaa")
+				}
+				else if (this.cursors.right.isDown)
+				{
+					//
+				}
+				else
+				{
+					this.play("legolasHorseWalking", true)
+					this.setVelocityX(150)
+				}
+				
+				if (this.aKey.isDown && this.body.onFloor())
+				{
+					this.setVelocityY(-190)
+					this.scene.sound.play("jump")
+				}
+			}
         }
 
         // Update timer.

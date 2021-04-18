@@ -113,7 +113,7 @@ class Item extends Phaser.Physics.Arcade.Sprite
 
 					scene.player.canMove = false
 					scene.player.setVelocityX(0)
-					scene.player.play("idle")
+					if (currentLevel != 6) {scene.player.play("idle")}
                 
 					scene.sound.stopAll()
 					scene.sound.play("actClear")

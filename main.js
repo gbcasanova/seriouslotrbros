@@ -93,6 +93,15 @@ var levels = [
 			"assets/backgrounds/breeBuildings1.png"
 		],
 		music: "assets/music/bree.mp3"
+	},
+	{
+		dir: "assets/tilemaps/bree-3.json",
+		backgrounds: [
+			"assets/backgrounds/breeSkies.png",
+			"assets/backgrounds/breeBuildings0.png",
+			"assets/backgrounds/breeBuildings1.png"
+		],
+		music: "assets/music/bree.mp3"
 	}
 ]
 

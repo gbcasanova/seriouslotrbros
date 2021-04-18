@@ -29,6 +29,7 @@ class Level extends Phaser.Scene
         this.load.spritesheet("enemies", "assets/sprites/enemies.png", {frameWidth: 16, frameHeight: 42})
 		this.load.spritesheet("blackrider", "assets/sprites/blackrider.png", {frameWidth: 63, frameHeight: 68})
 		this.load.spritesheet("bossHealthBar", "assets/sprites/bossHealthBar.png", {frameWidth: 42, frameHeight: 9})
+		this.load.spritesheet("legolasHorse", "assets/sprites/legolasHorse.png", {frameWidth: 92, frameHeight: 95})
 
         // Load map.
         this.load.image("tileset", "assets/sprites/tileset.png")
@@ -113,8 +114,8 @@ class Level extends Phaser.Scene
 
         // Import parallax backgrounds.
         this.add.image(config.width/2, config.height/2, "background0").setScrollFactor(0).setDepth(-1)
-        createParallax(this, config.width * 20, "background1", 0.25)
-        createParallax(this, config.width * 20, "background2", 0.5)
+        createParallax(this, config.width * 30, "background1", 0.25)
+        createParallax(this, config.width * 30, "background2", 0.5)
 
         // GUI.
         this.lifebar = this.add.sprite(10, config.height/2, "lifebar", this.player.lives)
