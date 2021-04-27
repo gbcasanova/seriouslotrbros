@@ -40,7 +40,7 @@ var config = {
 }
 
 var levels = [
-    {
+    { // 0 - Hobbiton 1
         dir: "assets/tilemaps/hobbiton-1.json",
         backgrounds: [
             "assets/backgrounds/hobbitonSkies.png", 
@@ -49,7 +49,7 @@ var levels = [
         ],
         music: "assets/music/hobbiton-1.mp3"
     },
-    {
+    { // 1 - Hobbiton 2
         dir: "assets/tilemaps/hobbiton-2.json",
         backgrounds: [
             "assets/backgrounds/hobbitonSkies.png", 
@@ -58,7 +58,7 @@ var levels = [
         ],
         music: "assets/music/hobbiton-1.mp3"
     },
-	{
+	{ // 2 - Hobbiton 3
         dir: "assets/tilemaps/hobbiton-3.json",
         backgrounds: [
             "assets/backgrounds/hobbitonSkies.png", 
@@ -67,7 +67,7 @@ var levels = [
         ],
         music: "assets/music/hobbiton-1.mp3"
     },
-	{
+	{ // 3 - Bree 1
 		dir: "assets/tilemaps/bree-0.json",
 		backgrounds: [
 			"assets/backgrounds/breeSkies.png",
@@ -76,7 +76,7 @@ var levels = [
 		],
 		music: "assets/music/bree.mp3"
 	},
-	{
+	{ // 4 - Bree 2
 		dir: "assets/tilemaps/bree-1.json",
 		backgrounds: [
 			"assets/backgrounds/breeSkies.png",
@@ -85,7 +85,7 @@ var levels = [
 		],
 		music: "assets/music/bree.mp3"
 	},
-	{
+	{ // 5 - Bree 3
 		dir: "assets/tilemaps/bree-2.json",
 		backgrounds: [
 			"assets/backgrounds/breeSkies.png",
@@ -94,7 +94,7 @@ var levels = [
 		],
 		music: "assets/music/bree.mp3"
 	},
-	{
+	{ // 6 - Bree 4
 		dir: "assets/tilemaps/bree-3.json",
 		backgrounds: [
 			"assets/backgrounds/breeSkies.png",
@@ -102,9 +102,18 @@ var levels = [
 			"assets/backgrounds/breeBuildings1.png"
 		],
 		music: "assets/music/bree.mp3"
-	}
+	},
+    { // 7 - Caradhras 1
+        dir: "assets/tilemaps/caradhras-0.json",
+        backgrounds: [
+			"assets/backgrounds/caradhrasSkies.png",
+			"assets/backgrounds/caradhrasClouds.png",
+			"assets/backgrounds/caradhrasMountains.png"
+		],
+        music: "assets/music/caradhras.mp3"
+    }
 ]
 
-var currentLevel = 0
+var currentLevel = 7
 
 var game = new Phaser.Game(config)
