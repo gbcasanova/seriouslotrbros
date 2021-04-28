@@ -42,12 +42,6 @@ class AiPlayer extends Phaser.Physics.Arcade.Sprite
                 frames: [{key: sprite, frame: 7}],
                 frameRate: 7,
             }),
-
-            this.anims.create({
-                key: "walkingAttacking",
-                frames: this.anims.generateFrameNumbers(sprite, {start: 8, end: 10}),
-                frameRate: 7,
-            })
         ]
 
         this.body.setGravityY(300)

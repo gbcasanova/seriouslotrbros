@@ -40,8 +40,6 @@ class Level extends Phaser.Scene
         this.load.image("background0", levels[currentLevel].backgrounds[0])
         this.load.image("background1", levels[currentLevel].backgrounds[1])
         this.load.image("background2", levels[currentLevel].backgrounds[2])
-        this.load.image("caradhrasSnow", "assets/backgrounds/caradhrasSnow.png")
-        this.load.image("caradhrasSnowSmall", "assets/backgrounds/caradhrasSnowSmall.png")
 
         // Load sounds.
         this.load.audio("coin", "assets/sounds/coin.wav")
@@ -57,6 +55,15 @@ class Level extends Phaser.Scene
         this.load.audio("actClear", "assets/music/actClear.mp3")
         this.load.audio("levelMusic", levels[currentLevel].music)
 		this.load.audio("bossMusic", "assets/music/bossMusic.mp3")
+
+        // Load level specific assets.
+        if (currentLevel >= 7)
+        {
+            this.load.image("caradhrasSnow", "assets/backgrounds/caradhrasSnow.png")
+            this.load.image("caradhrasSnowSmall", "assets/backgrounds/caradhrasSnowSmall.png")
+            this.load.spritesheet("aragornSprites", "assets/sprites/aragornSprites.png", {frameWidth: 45, frameHeight: 66})
+            this.load.spritesheet("legolasSprites", "assets/sprites/legolasSprites.png", {frameWidth: 45, frameHeight: 66})
+        }
     }
 
     create()
@@ -141,8 +148,11 @@ class Level extends Phaser.Scene
             this.caradhrasSnowSmall.depth = 100
 
             // Ai Players.
-            let gandalf = new AiPlayer(this, this.player.x - 5, this.player.y, "sam", 30)
-            this.physics.add.collider(gandalf, this.layers[1]);
+            let aragorn = new AiPlayer(this, this.player.x - 20, this.player.y, "aragornSprites", 75)
+            this.physics.add.collider(aragorn, this.layers[1]);
+
+            let legolas = new AiPlayer(this, this.player.x - 40, this.player.y, "legolasSprites", 135)
+            this.physics.add.collider(legolas, this.layers[1]);
         }
     }
 
