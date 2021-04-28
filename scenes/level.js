@@ -40,6 +40,8 @@ class Level extends Phaser.Scene
         this.load.image("background0", levels[currentLevel].backgrounds[0])
         this.load.image("background1", levels[currentLevel].backgrounds[1])
         this.load.image("background2", levels[currentLevel].backgrounds[2])
+        this.load.image("caradhrasSnow", "assets/backgrounds/caradhrasSnow.png")
+        this.load.image("caradhrasSnowSmall", "assets/backgrounds/caradhrasSnowSmall.png")
 
         // Load sounds.
         this.load.audio("coin", "assets/sounds/coin.wav")
@@ -124,6 +126,20 @@ class Level extends Phaser.Scene
 		
 		this.cameraLock = false
         this.levelFinished = false
+
+        // Snow.
+        if (currentLevel >= 7)
+        {
+            this.caradhrasSnow = this.add.tileSprite(0, 0, config.width, config.height, "caradhrasSnow")
+            this.caradhrasSnow.setScrollFactor(0, 0)
+            this.caradhrasSnow.setOrigin(0, 0)
+            this.caradhrasSnow.depth = 100
+
+            this.caradhrasSnowSmall = this.add.tileSprite(0, 0, config.width, config.height, "caradhrasSnowSmall")
+            this.caradhrasSnowSmall.setScrollFactor(0, 0)
+            this.caradhrasSnowSmall.setOrigin(0, 0)
+            this.caradhrasSnowSmall.depth = 100
+        }
     }
 
     importObjects(layer)
@@ -177,6 +193,17 @@ class Level extends Phaser.Scene
     {
         // Update lifebar.
         this.lifebar.setFrame(this.player.lives)
+
+        if (currentLevel >= 7)
+        {
+            this.caradhrasSnow.tilePositionX += 1
+            this.caradhrasSnow.tilePositionY -= 1
+            this.caradhrasSnowSmall.tilePositionX += 0.5
+            this.caradhrasSnowSmall.tilePositionY -= 0.5
+
+            this.caradhrasSnow.visible = this.player.canMove
+            this.caradhrasSnowSmall.visible = this.player.canMove
+        }
     }
 
     finishLevel()
