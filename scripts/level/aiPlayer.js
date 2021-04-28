@@ -1,6 +1,6 @@
 class AiPlayer extends Phaser.Physics.Arcade.Sprite
 {
-    constructor(scene, x, y, sprite)
+    constructor(scene, x, y, sprite, distance)
     {
         super(scene, x, y, sprite)
 
@@ -52,6 +52,7 @@ class AiPlayer extends Phaser.Physics.Arcade.Sprite
 
         this.body.setGravityY(300)
         this.body.setSize(this.width - 20, this.height)
+        this.distance = distance
 
         // Hurt Timer.
         this.timer = {}
@@ -118,13 +119,13 @@ class AiPlayer extends Phaser.Physics.Arcade.Sprite
 			}
 		}
 
-        if (this.scene.player.x - 30 > this.x)
+        if (this.scene.player.x - this.distance > this.x)
         {
             this.setVelocityX(100)
             this.play("walking", true)
             this.flipX = false
         }
-        else if (this.scene.player.x + 30 < this.x)
+        else if (this.scene.player.x + this.distance < this.x)
         {
             this.setVelocityX(-100)
             this.play("walking", true)

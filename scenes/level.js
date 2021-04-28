@@ -103,7 +103,7 @@ class Level extends Phaser.Scene
 
         // Ai Player.
         this.hasAiPlayer = true
-        this.aiPlayer = new AiPlayer(this, this.player.x - 5, this.player.y, "sam")
+        this.aiPlayer = new AiPlayer(this, this.player.x - 5, this.player.y, "sam", 30)
         this.physics.add.collider(this.aiPlayer, this.layers[1]);
 		
 		this.importObjects(this.layers[3]) // Import objects from map.
@@ -127,9 +127,9 @@ class Level extends Phaser.Scene
 		this.cameraLock = false
         this.levelFinished = false
 
-        // Snow.
+        // Check if level is caradhras.
         if (currentLevel >= 7)
-        {
+        {   // Snow.
             this.caradhrasSnow = this.add.tileSprite(0, 0, config.width, config.height, "caradhrasSnow")
             this.caradhrasSnow.setScrollFactor(0, 0)
             this.caradhrasSnow.setOrigin(0, 0)
@@ -139,6 +139,10 @@ class Level extends Phaser.Scene
             this.caradhrasSnowSmall.setScrollFactor(0, 0)
             this.caradhrasSnowSmall.setOrigin(0, 0)
             this.caradhrasSnowSmall.depth = 100
+
+            // Ai Players.
+            let gandalf = new AiPlayer(this, this.player.x - 5, this.player.y, "sam", 30)
+            this.physics.add.collider(gandalf, this.layers[1]);
         }
     }
 
