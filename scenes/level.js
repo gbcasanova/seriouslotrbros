@@ -63,6 +63,7 @@ class Level extends Phaser.Scene
             this.load.image("caradhrasSnowSmall", "assets/backgrounds/caradhrasSnowSmall.png")
             this.load.spritesheet("aragornSprites", "assets/sprites/aragornSprites.png", {frameWidth: 45, frameHeight: 66})
             this.load.spritesheet("legolasSprites", "assets/sprites/legolasSprites.png", {frameWidth: 45, frameHeight: 66})
+            this.load.spritesheet("gandalfSprites", "assets/sprites/gandalfSprites.png", {frameWidth: 46, frameHeight: 74})
         }
     }
 
@@ -145,13 +146,16 @@ class Level extends Phaser.Scene
             this.caradhrasSnowSmall = this.add.tileSprite(0, 0, config.width, config.height, "caradhrasSnowSmall")
             this.caradhrasSnowSmall.setScrollFactor(0, 0)
             this.caradhrasSnowSmall.setOrigin(0, 0)
-            this.caradhrasSnowSmall.depth = 100
+            this.caradhrasSnowSmall.setDepth(-1)
 
             // Ai Players.
-            let aragorn = new AiPlayer(this, this.player.x - 20, this.player.y, "aragornSprites", 75)
+            let gandalf = new AiPlayer(this, this.player.x - 20, this.player.y, "gandalfSprites", 75)
+            this.physics.add.collider(gandalf, this.layers[1]);
+
+            let aragorn = new AiPlayer(this, this.player.x - 40, this.player.y, "aragornSprites", 135)
             this.physics.add.collider(aragorn, this.layers[1]);
 
-            let legolas = new AiPlayer(this, this.player.x - 40, this.player.y, "legolasSprites", 135)
+            let legolas = new AiPlayer(this, this.player.x - 60, this.player.y, "legolasSprites", 195)
             this.physics.add.collider(legolas, this.layers[1]);
         }
     }
