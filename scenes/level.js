@@ -85,6 +85,12 @@ class Level extends Phaser.Scene
             this.player.canMove = true
             this.sound.stopAll()
             this.sound.play("levelMusic")
+
+            if (currentLevel >= 7)
+            {
+                this.caradhrasSnow.visible = true
+                this.caradhrasSnowSmall.visible = true
+            }
         }, this);
 		
 		// Enemy projectiles group.
@@ -142,11 +148,13 @@ class Level extends Phaser.Scene
             this.caradhrasSnow.setScrollFactor(0, 0)
             this.caradhrasSnow.setOrigin(0, 0)
             this.caradhrasSnow.depth = 100
+            this.caradhrasSnow.visible = false
 
             this.caradhrasSnowSmall = this.add.tileSprite(0, 0, config.width, config.height, "caradhrasSnowSmall")
             this.caradhrasSnowSmall.setScrollFactor(0, 0)
             this.caradhrasSnowSmall.setOrigin(0, 0)
             this.caradhrasSnowSmall.setDepth(-1)
+            this.caradhrasSnowSmall.visible = false
 
             // Ai Players.
             let gandalf = new AiPlayer(this, this.player.x - 20, this.player.y, "gandalfSprites", 75)
@@ -218,9 +226,6 @@ class Level extends Phaser.Scene
             this.caradhrasSnow.tilePositionY -= 1
             this.caradhrasSnowSmall.tilePositionX += 0.5
             this.caradhrasSnowSmall.tilePositionY -= 0.5
-
-            this.caradhrasSnow.visible = this.player.canMove
-            this.caradhrasSnowSmall.visible = this.player.canMove
         }
     }
 
