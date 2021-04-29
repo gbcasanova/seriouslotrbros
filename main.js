@@ -111,9 +111,18 @@ var levels = [
 			"assets/backgrounds/caradhrasMountains.png"
 		],
         music: "assets/music/caradhras.mp3"
+    },
+    { // 8 - Caradhras 2
+        dir: "assets/tilemaps/caradhras-1.json",
+        backgrounds: [
+			"assets/backgrounds/caradhrasSkies.png",
+			"assets/backgrounds/caradhrasClouds.png",
+			"assets/backgrounds/caradhrasMountains.png"
+		],
+        music: "assets/music/caradhras.mp3"
     }
 ]
 
-var currentLevel = 7
+var currentLevel = 8
 
 var game = new Phaser.Game(config)
