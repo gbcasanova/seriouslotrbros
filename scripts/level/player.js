@@ -1,49 +1,50 @@
 class Player extends Phaser.Physics.Arcade.Sprite
 {
-    constructor(scene, x, y)
+    constructor(scene, x, y, sprite)
     {
         super(scene, x, y, "frodo")
 
         // Add to updatelist.
         scene.add.existing(this)
         scene.physics.add.existing(this)
+		this.sprite = sprite
 
         let playerAnimations = [
             this.anims.create ({
                 key: "idle",
-                frames: [{key: "frodo", frame: 0}],
+                frames: [{key: sprite, frame: 0}],
                 frameRate: 7,
             }),
 
             this.anims.create ({
                 key: "walking",
-                frames: this.anims.generateFrameNumbers("frodo", {start: 1, end: 3}),
+                frames: this.anims.generateFrameNumbers(sprite, {start: 1, end: 3}),
                 frameRate: 7,
                 repeat: -1
             }),
 
             this.anims.create({
                 key: "attacking",
-                frames: this.anims.generateFrameNumbers("frodo", {start: 4, end: 5}),
+                frames: this.anims.generateFrameNumbers(sprite, {start: 4, end: 5}),
                 frameRate: 5,
                 repeat: -1
             }),
 
             this.anims.create({
                 key: "falling",
-                frames: [{key: "frodo", frame: 6}],
+                frames: [{key: sprite, frame: 6}],
                 frameRate: 7,
             }),
 
             this.anims.create({
                 key: "jumping",
-                frames: [{key: "frodo", frame: 7}],
+                frames: [{key: sprite, frame: 7}],
                 frameRate: 7,
             }),
 
             this.anims.create({
                 key: "walkingAttacking",
-                frames: this.anims.generateFrameNumbers("frodo", {start: 8, end: 10}),
+                frames: this.anims.generateFrameNumbers(sprite, {start: 8, end: 10}),
                 frameRate: 7,
             }),
 			
@@ -199,15 +200,31 @@ class Player extends Phaser.Physics.Arcade.Sprite
 				}
 				
 				// Shoot projectiles.
-				if(this.sKey.isDown && this.projectileCounter >= 15)    
+				if (this.sprite == "frodo")
 				{
-					this.projectileGroup.add(new Projectile(this.scene, this.x, this.y, this.flipX, "playerProjectile", 160, 30))
-					this.scene.sound.play("sword")
-					this.projectileCounter = 0;
+					if(this.sKey.isDown && this.projectileCounter >= 15)    
+					{
+						this.projectileGroup.add(new Projectile(this.scene, this.x, this.y, this.flipX, "playerProjectile", 160, 30))
+						this.scene.sound.play("sword")
+						this.projectileCounter = 0;
+					}
+					else 
+					{
+						this.projectileCounter++
+					}
 				}
-				else 
+				else if (this.sprite == "gandalfSprites")
 				{
-					this.projectileCounter++
+					if(this.sKey.isDown && this.projectileCounter >= 5)    
+					{
+						this.projectileGroup.add(new Projectile(this.scene, this.x, this.y, this.flipX, "gandalfProjectile", 240, 20))
+						this.scene.sound.play("sword")
+						this.projectileCounter = 0;
+					}
+					else 
+					{
+						this.projectileCounter++
+					}
 				}
 			}
 			else

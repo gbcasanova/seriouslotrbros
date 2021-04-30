@@ -59,11 +59,17 @@ class Level extends Phaser.Scene
         // Load level specific assets.
         if (currentLevel >= 7)
         {
-            this.load.image("caradhrasSnow", "assets/backgrounds/caradhrasSnow.png")
-            this.load.image("caradhrasSnowSmall", "assets/backgrounds/caradhrasSnowSmall.png")
-            this.load.spritesheet("aragornSprites", "assets/sprites/aragornSprites.png", {frameWidth: 45, frameHeight: 66})
-            this.load.spritesheet("legolasSprites", "assets/sprites/legolasSprites.png", {frameWidth: 45, frameHeight: 66})
             this.load.spritesheet("gandalfSprites", "assets/sprites/gandalfSprites.png", {frameWidth: 46, frameHeight: 74})
+            this.load.image("gandalfProjectile", "assets/sprites/gandalfProjectile.png")
+            this.load.image("bigSnake", "assets/sprites/bigSnake.png")
+
+            if (currentLevel <= 8)
+            {
+                this.load.image("caradhrasSnow", "assets/backgrounds/caradhrasSnow.png")
+                this.load.image("caradhrasSnowSmall", "assets/backgrounds/caradhrasSnowSmall.png")
+                this.load.spritesheet("aragornSprites", "assets/sprites/aragornSprites.png", {frameWidth: 45, frameHeight: 66})
+                this.load.spritesheet("legolasSprites", "assets/sprites/legolasSprites.png", {frameWidth: 45, frameHeight: 66})
+            }
         }
     }
 
@@ -86,7 +92,7 @@ class Level extends Phaser.Scene
             this.sound.stopAll()
             this.sound.play("levelMusic")
 
-            if (currentLevel >= 7)
+            if (currentLevel >= 7 && currentLevel <= 8)
             {
                 this.caradhrasSnow.visible = true
                 this.caradhrasSnowSmall.visible = true
@@ -97,7 +103,14 @@ class Level extends Phaser.Scene
 		this.enemyProjectiles = this.physics.add.group()
 
         // Create player.
-        this.player = new Player(this, 200, 100)
+        if (currentLevel <= 8)
+        {
+            this.player = new Player(this, 200, 100, "frodo")
+        }
+        else
+        {
+            this.player = new Player(this, 200, 100, "gandalfSprites")
+        }
 
         // Import map and tileset.
         let map     = this.make.tilemap({key: "tilemap"})
@@ -142,7 +155,7 @@ class Level extends Phaser.Scene
         this.levelFinished = false
 
         // Check if level is caradhras.
-        if (currentLevel >= 7)
+        if (currentLevel >= 7 && currentLevel <= 8)
         {   // Snow.
             this.caradhrasSnow = this.add.tileSprite(0, 0, config.width, config.height, "caradhrasSnow")
             this.caradhrasSnow.setScrollFactor(0, 0)
@@ -203,6 +216,10 @@ class Level extends Phaser.Scene
                         object.properties[0].value, object.properties[1].value
                     )
                     break
+                
+                case "bigSnake":
+                    new BigSnake(this, object.x, object.y)
+                    break
 					
 				case "blackrider":
 					let blackRider = new BlackRider(
@@ -220,12 +237,15 @@ class Level extends Phaser.Scene
         // Update lifebar.
         this.lifebar.setFrame(this.player.lives)
 
-        if (currentLevel >= 7)
+        if (currentLevel >= 7 && currentLevel <= 8)
         {
-            this.caradhrasSnow.tilePositionX += 1
-            this.caradhrasSnow.tilePositionY -= 1
-            this.caradhrasSnowSmall.tilePositionX += 0.5
-            this.caradhrasSnowSmall.tilePositionY -= 0.5
+            if (this.player.canMove == true)
+            {
+                this.caradhrasSnow.tilePositionX += 1
+                this.caradhrasSnow.tilePositionY -= 1
+                this.caradhrasSnowSmall.tilePositionX += 0.5
+                this.caradhrasSnowSmall.tilePositionY -= 0.5
+            }
         }
     }
 

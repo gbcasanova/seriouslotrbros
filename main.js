@@ -29,10 +29,10 @@ var config = {
         default: 'arcade',
         arcade: 
         {
-            /*debug: true,
+            debug: true,
             debugShowBody: true,
             debugShowStaticBody: true,
-            fps: 60*/
+            fps: 60
         }
     },
 
@@ -120,9 +120,18 @@ var levels = [
 			"assets/backgrounds/caradhrasMountains.png"
 		],
         music: "assets/music/caradhras.mp3"
+    },
+    { // 9 - Moria 1
+        dir: "assets/tilemaps/moria-0.json",
+        backgrounds: [
+			"assets/backgrounds/moriaSkies.png",
+			"assets/backgrounds/moriaTombs.png",
+			"assets/backgrounds/moriaMountains.png"
+		],
+        music: "assets/music/moria.mp3"
     }
 ]
 
-var currentLevel = 8
+var currentLevel = 9
 
 var game = new Phaser.Game(config)
