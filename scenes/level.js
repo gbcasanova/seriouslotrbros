@@ -61,7 +61,6 @@ class Level extends Phaser.Scene
         {
             this.load.spritesheet("gandalfSprites", "assets/sprites/gandalfSprites.png", {frameWidth: 46, frameHeight: 74})
             this.load.image("gandalfProjectile", "assets/sprites/gandalfProjectile.png")
-            this.load.image("bigSnake", "assets/sprites/bigSnake.png")
 
             if (currentLevel <= 8)
             {
@@ -215,10 +214,6 @@ class Level extends Phaser.Scene
                         this, object.x, object.y, object.type, 
                         object.properties[0].value, object.properties[1].value
                     )
-                    break
-                
-                case "bigSnake":
-                    new BigSnake(this, object.x, object.y)
                     break
 					
 				case "blackrider":
