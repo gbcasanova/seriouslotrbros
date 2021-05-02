@@ -213,19 +213,6 @@ class Player extends Phaser.Physics.Arcade.Sprite
 						this.projectileCounter++
 					}
 				}
-				else if (this.sprite == "gandalfSprites")
-				{
-					if(this.sKey.isDown && this.projectileCounter >= 5)    
-					{
-						this.projectileGroup.add(new Projectile(this.scene, this.x, this.y, this.flipX, "gandalfProjectile", 240, 20))
-						this.scene.sound.play("sword")
-						this.projectileCounter = 0;
-					}
-					else 
-					{
-						this.projectileCounter++
-					}
-				}
 			}
 			else
 			{
