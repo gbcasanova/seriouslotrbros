@@ -89,7 +89,7 @@ class Level extends Phaser.Scene
             cutsceneLevel.destroy()
             this.player.canMove = true
             this.sound.stopAll()
-            this.sound.play("levelMusic")
+            let levelMusic = this.sound.add("levelMusic", {loop: true}).play()
 
             if (currentLevel >= 7 && currentLevel <= 8)
             {
