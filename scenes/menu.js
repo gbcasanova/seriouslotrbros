@@ -11,10 +11,8 @@ class Menu extends Phaser.Scene
         this.load.image("hobbitonMountains", "assets/backgrounds/hobbitonMountains.png")
         this.load.image("logo", "assets/sprites/logo.png")
 
-        this.load.spritesheet("cutscene", "assets/cutscenes/cutscene01.png", {frameWidth: 256, frameHeight:240})
         this.load.spritesheet("buttons", "assets/sprites/buttons.png", {frameWidth: 76, frameHeight: 24})
 
-        //this.load.audio("intro", "assets/music/intro.mp3")
         this.load.audio("menu", "assets/music/khazadDum.mp3")
 		this.load.video("video", "assets/intro.mp4", 'loadeddata', false, false)
 
@@ -67,12 +65,14 @@ class Menu extends Phaser.Scene
     {
         this.cameras.main.fadeIn(2000)
 
+        this.fadeStarted = false
+
         let menuMusic = this.sound.add("menu", {loop: true})
         menuMusic.play()
 
         this.backgrounds = [
-            this.add.tileSprite(0, 0, config.width, config.height, "hobbitonMountains"),
-            this.add.tileSprite(0, 0, config.width, config.height, "hobbitonClouds")
+            this.add.tileSprite(0, 0, 0, 0, "hobbitonMountains"),
+            this.add.tileSprite(0, 0, 0, 0, "hobbitonClouds")
         ]
 
         this.backgrounds[0].setOrigin(0, 0)
@@ -85,12 +85,30 @@ class Menu extends Phaser.Scene
 
         this.playButton = new Button(this, config.width/2, 180, 0, function playAction(scene) 
         {
-            scene.sound.stopAll()
-            scene.scene.start("Level");
+            if (!scene.fadeStarted)
+            {
+                scene.fadeStarted = true
+                scene.sound.stopAll()
+                scene.cameras.main.fadeOut(2000)
+                scene.cameras.main.once('camerafadeoutcomplete', function (camera) {
+                    scene.scene.start("Level");
+                });
+            }
         })
         
         this.loadButton = new Button(this, config.width/2, 207, 2)
-        this.loadButton = new Button(this, config.width/2, 15, 4)
+        this.creditsButton = new Button(this, config.width/2, 15, 4, function creditsAction(scene)
+        {
+            if (!scene.fadeStarted)
+            {
+                scene.fadeStarted = true
+                scene.sound.stopAll()
+                scene.cameras.main.fadeOut(2000)
+                scene.cameras.main.once('camerafadeoutcomplete', function (camera) {
+                    scene.scene.start("Credits");
+                });
+            }
+        })
     }
 
     update(time, delta)
