@@ -17,11 +17,11 @@ class Level extends Phaser.Scene
 
         // Load images.
         this.load.image("playerProjectile", "assets/sprites/playerProjectile.png")
-        this.load.image("gotThrough", "assets/sprites/gotThrough.png")
 		this.load.image("goblinAxe", "assets/sprites/goblinAxe.png")
 		this.load.image("aiFucked", "assets/sprites/aiFucked.png")
 
         // Load spritesheets.
+        this.load.spritesheet("gotThrough", "assets/sprites/gotThrough.png", {frameWidth: 197, frameHeight: 54})
         this.load.spritesheet("cutsceneLevel", "assets/cutscenes/cutsceneLevel.png", {frameWidth: 256, frameHeight: 240})
         this.load.spritesheet("frodo", "assets/sprites/frodo.png", {frameWidth: 33, frameHeight: 33})
         this.load.spritesheet("sam", "assets/sprites/sam.png", {frameWidth: 33, frameHeight: 33})
@@ -246,7 +246,15 @@ class Level extends Phaser.Scene
     finishLevel()
     {
         // Level finish "got through".
-        let finishSprite = this.add.sprite(config.width/2, -100, "gotThrough")
+        let finishSprite
+        if (currentLevel < 9)
+        {
+            finishSprite = this.add.sprite(config.width/2, -100, "gotThrough", 0)
+        }
+        else
+        {
+            finishSprite = this.add.sprite(config.width/2, -100, "gotThrough", 1)
+        }
         finishSprite.setScrollFactor(0, 0)
         finishSprite.setDepth(3)
 
