@@ -7,6 +7,11 @@ class Balrog extends Phaser.Scene
 
     preload()
     {
+        // Sounds.
+        this.load.audio("balrogMusic", "assets/music/balrog.mp3")
+        this.load.audio("fireBall", "assets/sounds/enemy.wav")
+        this.load.audio("sword", "assets/sounds/sword.wav")
+
         // Backgrounds.
         this.load.image("moria3D", "assets/backgrounds/moria3D.png")
         this.load.image("moriaSkies", "assets/backgrounds/moriaSkies.png")
@@ -24,6 +29,7 @@ class Balrog extends Phaser.Scene
     create()
     {
         this.cameras.main.fadeIn(500)
+        let levelMusic = this.sound.add("balrogMusic", {loop: true}).play()
 
         // UI and GUI.
         this.started = false
@@ -91,6 +97,8 @@ class Balrog extends Phaser.Scene
             callback: function(){
                 if (this.started)
                 {
+                    this.sound.play("fireBall")
+
                     // Generate a random position.
                     let randomX = this.getRndInteger(150, 537)
                     let randomY = this.getRndInteger(80, 204)
@@ -106,6 +114,7 @@ class Balrog extends Phaser.Scene
                     {
                         clicked = true
                         this.collectedFlames += 1
+                        this.sound.play("sword")
                         sprite.destroy()
                     }, this);
 
@@ -190,7 +199,7 @@ class Balrog extends Phaser.Scene
             }
             this.moriaStaff.x = this.keys.pointer.x
 
-            if (this.phaseLevel >= 2)
+            if (this.phaseLevel >= 10)
             {
                 this.started = false
                 this.moriaStaff.x = config.width/2
@@ -218,6 +227,7 @@ class Balrog extends Phaser.Scene
         this.cameras.main.fadeOut(2000, 255, 255, 255)
 
         this.cameras.main.once('camerafadeoutcomplete', function (camera) {
+            this.sound.stopAll()
             this.scene.start("Credits");
         }, this)
     }

@@ -265,8 +265,15 @@ class Level extends Phaser.Scene
         }, this)
 
         this.cameras.main.once('camerafadeoutcomplete', function (camera) {
-            currentLevel += 1
-            this.scene.restart()
+            if (currentLevel < 9)
+            {
+                currentLevel += 1
+                this.scene.restart()
+            }
+            else
+            {
+                this.scene.start("Balrog")
+            }
         }, this)
     }
 }
