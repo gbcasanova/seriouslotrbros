@@ -14,7 +14,7 @@ class Menu extends Phaser.Scene
         this.load.spritesheet("buttons", "assets/sprites/buttons.png", {frameWidth: 76, frameHeight: 24})
 
         this.load.audio("menu", "assets/music/khazadDum.mp3")
-		this.load.video("intro", "assets/intro.mp4", 'loadeddata', false, false)
+		this.load.video("intro", "assets/cutscenes/intro.mp4", 'loadeddata', false, false)
 
     }
 

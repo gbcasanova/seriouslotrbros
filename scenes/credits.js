@@ -14,7 +14,7 @@ class Credits extends Phaser.Scene
         // the game.
         if (currentLevel >= 9)
         {
-            this.load.video("ending", "assets/ending.mp4", 'loadeddata', false, false)
+            this.load.video("ending", "assets/cutscenes/ending.mp4", 'loadeddata', false, false)
         }
     }
 
