@@ -27,13 +27,13 @@ var config = {
     physics: 
     {
         default: 'arcade',
-        arcade: 
+        /*arcade: 
         {
             debug: true,
             debugShowBody: true,
             debugShowStaticBody: true,
             fps: 60
-        }
+        }*/
     },
 
     scene: [Select, Level, Menu, Balrog, Credits]
@@ -132,6 +132,6 @@ var levels = [
     }
 ]
 
-var currentLevel = 0
+var currentLevel = 9
 
 var game = new Phaser.Game(config)

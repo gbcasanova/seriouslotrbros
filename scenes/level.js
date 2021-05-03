@@ -60,7 +60,6 @@ class Level extends Phaser.Scene
         if (currentLevel >= 7)
         {
             this.load.spritesheet("gandalfSprites", "assets/sprites/gandalfSprites.png", {frameWidth: 46, frameHeight: 74})
-            this.load.image("gandalfProjectile", "assets/sprites/gandalfProjectile.png")
 
             if (currentLevel <= 8)
             {
