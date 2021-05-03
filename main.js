@@ -36,7 +36,7 @@ var config = {
         }*/
     },
 
-    scene: [Menu, Level, Select, Balrog, Credits]
+    scene: [Play, Menu, Level, Select, Balrog, Credits]
 }
 
 var levels = [
