@@ -20,6 +20,8 @@ class Credits extends Phaser.Scene
 
     create()
     {
+        this.cameras.main.fadeIn(2000, 255, 255, 255)
+
         this.musicVolume = 1
         this.music = this.sound.add("creditsMusic")
         this.text = this.add.text(0, config.height, this.cache.text.get("credits"), {font: "13px Arial", align: "center"})
