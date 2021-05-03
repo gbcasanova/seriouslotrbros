@@ -14,13 +14,13 @@ class Menu extends Phaser.Scene
         this.load.spritesheet("buttons", "assets/sprites/buttons.png", {frameWidth: 76, frameHeight: 24})
 
         this.load.audio("menu", "assets/music/khazadDum.mp3")
-		this.load.video("video", "assets/intro.mp4", 'loadeddata', false, false)
+		this.load.video("intro", "assets/intro.mp4", 'loadeddata', false, false)
 
     }
 
     create()
     {
-		this.cutsceneVideo = this.add.video(config.width/2, config.height/2, 'video')
+		this.cutsceneVideo = this.add.video(config.width/2, config.height/2, 'intro')
 		this.cutsceneVideo.displayWidth = config.width+64
 		this.cutsceneVideo.displayHeight = config.height
 		this.cutsceneVideo.play(false)
@@ -54,11 +54,6 @@ class Menu extends Phaser.Scene
                 })
 			}
         }, this);
-    }
-
-    createCutscene()
-    {
-		
     }
 
     createTitle()
@@ -96,8 +91,7 @@ class Menu extends Phaser.Scene
             }
         })
         
-        this.loadButton = new Button(this, config.width/2, 207, 2)
-        this.creditsButton = new Button(this, config.width/2, 15, 4, function creditsAction(scene)
+        this.creditsButton = new Button(this, config.width/2, 207, 4, function creditsAction(scene)
         {
             if (!scene.fadeStarted)
             {
