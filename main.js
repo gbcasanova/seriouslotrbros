@@ -36,7 +36,7 @@ var config = {
         }*/
     },
 
-    scene: [Select, Level, Menu, Balrog, Credits]
+    scene: [Menu, Level, Select, Balrog, Credits]
 }
 
 var levels = [
@@ -132,6 +132,6 @@ var levels = [
     }
 ]
 
-var currentLevel = 9
+var currentLevel = 0
 
 var game = new Phaser.Game(config)
