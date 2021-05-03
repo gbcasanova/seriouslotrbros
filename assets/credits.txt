@@ -17,7 +17,7 @@ MrLevRocks
 
 -- MUSIC --
 Luan Maziero:
-Original Theme
+Original Theme (Intro)
 Howard Shore:
 The Lord of the Rings Movie OST.
 Kazuo Sawa:
@@ -28,6 +28,8 @@ Tim Follin:
 Silver Surfer / Lvl. 1 (Boss)
 Silver Surfer / Lvl. 2 (World 3)
 Solstice / Title Screen (Credits)
+Disasterpeace:
+Fez / Majesty (Ending)
 
 
 -- SOUND EFFECTS --
