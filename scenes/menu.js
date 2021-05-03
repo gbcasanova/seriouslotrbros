@@ -76,7 +76,7 @@ class Menu extends Phaser.Scene
         this.backgrounds[1].setOrigin(0, 0)
         this.backgrounds[1].setScrollFactor(0)
 
-        this.logo = this.add.image(config.width/2, config.height/2, "logo")
+        this.logo = this.add.image(config.width/2, 100, "logo")
 
         this.playButton = new Button(this, config.width/2, 180, 0, function playAction(scene) 
         {
