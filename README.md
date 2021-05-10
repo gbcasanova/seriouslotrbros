@@ -1,3 +1,5 @@
+![logo](Logo222.png)
+
 # PLAY NOW:
 [Play on itch.io](https://casanovagames.itch.io/seriouslotrbros)
 
@@ -18,7 +20,7 @@ Beat up evil Orcs, Goblins, Ringwraiths and jump through countless spikes, falli
 
 ``This game uses MP3, MP4 and WAV technologies. So make sure your browser supports these for a perfect gaming experience. The first time you play the game, it will load the assets so don't be surprised by a black screen appearing for a few seconds before the first level.``
 
-*Beware: This is a fan-game, with no intentions of making any money based on the copyrighted content *it uses and bases itself on. Check out official Middle Earth games on Steam.
+*Beware: This is a fan-game, with no intentions of making any money based on the copyrighted content *it uses and bases itself on. Check out official Middle Earth games on Steam.*
 
 [Full credits for everyone involved in the project.](https://raw.githubusercontent.com/casanovagames/seriouslotrbros/main/assets/credits.txt)
 
