@@ -1,5 +1,7 @@
 # PLAY NOW:
-<iframe src="https://itch.io/embed/1032583" height="167" width="552" frameborder="0"><a href="https://casanovagames.itch.io/seriouslotrbros">Serious Lord of the Rings Bros. by Casanova Games</a></iframe>
+[Play on itch.io](https://casanovagames.itch.io/seriouslotrbros)
+
+[Play on Game Jolt](https://gamejolt.com/games/seriouslotrbros/606266)
 
 ## "...An Epic for the Ages!"
 
@@ -19,3 +21,6 @@ Beat up evil Orcs, Goblins, Ringwraiths and jump through countless spikes, falli
 *Beware: This is a fan-game, with no intentions of making any money based on the copyrighted content *it uses and bases itself on. Check out official Middle Earth games on Steam.
 
 [Full credits for everyone involved in the project.](https://raw.githubusercontent.com/casanovagames/seriouslotrbros/main/assets/credits.txt)
+
+## Code information.
+The code on this project is quite unorganized, since it was my first JavaScript project.
