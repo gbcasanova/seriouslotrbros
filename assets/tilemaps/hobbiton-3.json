@@ -1225,18 +1225,6 @@
                  "y":80
                 }, 
                 {
-                 "gid":1,
-                 "height":16,
-                 "id":210,
-                 "name":"",
-                 "rotation":0,
-                 "type":"playerStart",
-                 "visible":true,
-                 "width":16,
-                 "x":2080,
-                 "y":48
-                }, 
-                {
                  "gid":4,
                  "height":16,
                  "id":211,
@@ -1282,6 +1270,18 @@
                  "width":16,
                  "x":2720,
                  "y":0
+                }, 
+                {
+                 "gid":1,
+                 "height":16,
+                 "id":215,
+                 "name":"",
+                 "rotation":0,
+                 "type":"playerStart",
+                 "visible":true,
+                 "width":16,
+                 "x":96,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1290,7 +1290,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":215,
+ "nextobjectid":216,
  "orientation":"orthogonal",
  "properties":[
         {
