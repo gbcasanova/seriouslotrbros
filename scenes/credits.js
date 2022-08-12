@@ -24,12 +24,12 @@ class Credits extends Phaser.Scene
 
         this.musicVolume = 1
         this.music = this.sound.add("creditsMusic")
-        this.text = this.add.text(0, config.height, this.cache.text.get("credits"), {font: "13px Arial", align: "center"})
+        this.text = this.add.text(config.width/4.5, config.height, this.cache.text.get("credits"), {font: "13px Arial", align: "center"})
 
         if (currentLevel >= 9)
         {
             this.cutsceneVideo = this.add.video(config.width/2, config.height/2, 'ending')
-            this.cutsceneVideo.displayWidth = config.width+64
+            this.cutsceneVideo.displayWidth = 256+64
             this.cutsceneVideo.displayHeight = config.height
             this.cutsceneVideo.play(false)
             this.cutsceneVideo.setPaused(false);

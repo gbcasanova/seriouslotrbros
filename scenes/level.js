@@ -19,6 +19,7 @@ class Level extends Phaser.Scene
         this.load.image("playerProjectile", "assets/sprites/playerProjectile.png")
 		this.load.image("goblinAxe", "assets/sprites/goblinAxe.png")
 		this.load.image("aiFucked", "assets/sprites/aiFucked.png")
+        this.load.image("blackscreen", "assets/cutscenes/blackscreen.png")
 
         // Load spritesheets.
         this.load.spritesheet("gotThrough", "assets/sprites/gotThrough.png", {frameWidth: 197, frameHeight: 54})
@@ -77,8 +78,11 @@ class Level extends Phaser.Scene
         this.cameras.main.fadeIn(500)
         this.sound.play("fanfare")
 
-        let cutsceneLevel = this.add.sprite(0, 0, "cutsceneLevel", currentLevel)
-        cutsceneLevel.setOrigin(0, 0)
+        let blackscreen = this.add.sprite(config.width/2, config.height/2, "blackscreen", currentLevel)
+        blackscreen.setDepth(4)
+        blackscreen.setScrollFactor(0, 0)
+
+        let cutsceneLevel = this.add.sprite(config.width/2, config.height/2, "cutsceneLevel", currentLevel)
         cutsceneLevel.setDepth(4)
         cutsceneLevel.setScrollFactor(0, 0)
         cutsceneLevel.setInteractive({cursor: 'pointer'})
@@ -86,6 +90,7 @@ class Level extends Phaser.Scene
         cutsceneLevel.on('pointerdown', function (event) 
         {
             cutsceneLevel.destroy()
+            blackscreen.destroy()
             this.player.canMove = true
             this.sound.stopAll()
             let levelMusic = this.sound.add("levelMusic", {loop: true}).play()

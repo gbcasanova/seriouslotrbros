@@ -1,6 +1,6 @@
 var config = {
     type:Phaser.WEBGL,
-    width: 256,
+    width: 430,
     height: 240,
     roundPixels: true,
     pixelArt: true,
@@ -37,6 +37,7 @@ var config = {
     },
 
     scene: [Play, Menu, Level, Select, Balrog, Credits]
+    //scene: [Select, Play, Menu, Level, Balrog, Credits]
 }
 
 var levels = [

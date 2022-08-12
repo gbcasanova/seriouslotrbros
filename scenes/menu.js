@@ -21,7 +21,7 @@ class Menu extends Phaser.Scene
     create()
     {
 		this.cutsceneVideo = this.add.video(config.width/2, config.height/2, 'intro')
-		this.cutsceneVideo.displayWidth = config.width+64
+		this.cutsceneVideo.displayWidth = 256+64
 		this.cutsceneVideo.displayHeight = config.height
 		this.cutsceneVideo.play(false)
 		this.cutsceneVideo.setPaused(false);
