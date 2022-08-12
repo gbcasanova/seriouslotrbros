@@ -179,14 +179,14 @@ class Balrog extends Phaser.Scene
             // Player camera horizontal movement.
             if (this.keys.a.isDown)
             {
-                if (this.playerCamera.x >= 130)
+                if (this.playerCamera.x >= 217)
                 {
                     this.playerCamera.x -= 3
                 }
             }
             else if (this.keys.d.isDown)
             {
-                if (this.playerCamera.x <= 560)
+                if (this.playerCamera.x <= 475)
                 {
                     this.playerCamera.x += 3
                 }
