@@ -28,7 +28,7 @@ class BlackRider extends Phaser.Physics.Arcade.Sprite
 		
 		this.started = false
 		this.moving = false
-		this.velocity  = 1
+		this.velocity  = 1.5
 		this.pinchMode = false
 		this.firstX = firstX
         this.lastX  = lastX
